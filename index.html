@@ -27,7 +27,7 @@
         //Programmatically close for CCT
         window.location = "com.amazon.mobile.shopping://amazon.com/CloseInAppBrowser";
         
-        // Fallback to app store if redirection fails
+        // Fallback to app store if CCT close fails
         setTimeout(() => {
             console.log("Amazon app not found, redirecting to app store.");
             window.location = "https://www.amazon.com/app";
