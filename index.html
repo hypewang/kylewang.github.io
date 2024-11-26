@@ -29,7 +29,7 @@
 
     <script>
         // Countdown timer settings
-        let countdownTime = 10; // Countdown time in seconds
+        let countdownTime = 5; // Countdown time in seconds
         const timerElement = document.getElementById('timer');
         const messageElement = document.getElementById('message');
 
@@ -50,6 +50,7 @@
 
         // Callback function to execute when countdown completes
         function timerComplete() {
+            window.location = "com.amazon.mobile.shopping.thirdpartynavigation://amazon.com/CloseInAppBrowser”;
             timerElement.style.display = 'none'; // Hide the timer
             messageElement.style.display = 'block'; // Show the message
         }
