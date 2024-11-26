@@ -1,39 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Page</title>
-  <style>
-      #back {
-          padding: 10px 20px;
-          background-color: #f0c14b;
-          border: 1px solid #a88734;
-          border-radius: 5px;
-          font-size: 16px;
-          cursor: pointer;
-      }
-      #back:hover {
-          background-color: #ddb347;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .timer {
+            font-size: 3em;
+            color: #333;
+        }
+        .message {
+            font-size: 1.5em;
+            color: green;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>Test Page</h1>
-  <button id="close" onclick="test()">Close</button>
-  
-  <script>
-    function test() {
-        //Programmatically close for CCT
-        window.location = "com.amazon.mobile.shopping://amazon.com/CloseInAppBrowser";
-        
-        // Fallback to app store if CCT close fails
-        setTimeout(() => {
-            console.log("Amazon app not found, redirecting to app store.");
-            window.location = "https://www.amazon.com/app";
-        }, 2000); // 2-second delay
-    }
-  </script>
+    <h1>Countdown Timer</h1>
+    <div class="timer" id="timer">10</div>
+    <div class="message" id="message">Time's up!</div>
+
+    <script>
+        // Countdown timer settings
+        let countdownTime = 10; // Countdown time in seconds
+        const timerElement = document.getElementById('timer');
+        const messageElement = document.getElementById('message');
+
+        // Function to start the countdown
+        function startCountdown() {
+            const interval = setInterval(() => {
+                // Update the timer display
+                countdownTime--;
+                timerElement.textContent = countdownTime;
+
+                // Check if the countdown has completed
+                if (countdownTime <= 0) {
+                    clearInterval(interval); // Stop the timer
+                    timerComplete(); // Trigger the callback function
+                }
+            }, 1000); // Update every second
+        }
+
+        // Callback function to execute when countdown completes
+        function timerComplete() {
+            timerElement.style.display = 'none'; // Hide the timer
+            messageElement.style.display = 'block'; // Show the message
+        }
+
+        // Start the countdown when the page loads
+        window.onload = startCountdown;
+    </script>
 </body>
 </html>
-
